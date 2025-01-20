@@ -1,0 +1,57 @@
+@use 'mixins';
+.income{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 20px;
+    & h2{
+        font-size: 42px;
+        padding-bottom: 20px;
+        color: green;
+    }
+    &__container{
+        @include mixins.container-styles;
+    }
+    &__padding{
+        padding-top: 20px;
+    }
+    &__category{
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+       & h2:first-of-type{
+        color: black;
+       }
+        &-btn{
+            display: flex;
+            column-gap: 10px;
+        }
+        &-list{
+            
+            li{
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                padding-bottom: 15px;
+                input{
+                    height: 30px;
+                    max-width: 200px;
+                }
+                span{
+                    min-width: 130px;
+                    font-weight: bold;
+                }
+            }
+            display:flex;
+            flex-direction: column;
+            row-gap: 10px;
+        }
+        &-block{
+            padding: 8px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+    }
+}
