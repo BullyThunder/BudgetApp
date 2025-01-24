@@ -48,8 +48,12 @@
        column-gap: 10px;
   padding-bottom: 15px;
 }
+.income__category-list li input {
+  height: 30px;
+  max-width: 200px;
+}
 .income__category-list li span {
-  min-width: 70px;
+  min-width: 130px;
   font-weight: bold;
 }
 .income__category-block {

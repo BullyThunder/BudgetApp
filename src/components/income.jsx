@@ -36,20 +36,28 @@ const Income = () => {
             [id]:""}))
     }
     const addCategory = () => {
-        const updatedArrCategory = [...arrCategory, { value: inputValue,id: Date.now() }];
+        const updatedArrCategory = [...arrCategory, { value: inputValue,id: Date.now(),total:0 }];
         setArrCategory(updatedArrCategory);
         setInputValue('');
         saveToLocalStorage(updatedArrCategory)
     };
     const [totalInput, setTotalInput] = useState('');
-    const addToTotal = () =>{
-        setTotalInput(...totalInput, {value:incomeInput, id: Date.now()});
-        setIncomeInput("");
+    const addToTotal = (id) =>{
+        setTotalInput((prev)=>({
+            ...prev, [id]:(prev[id] || 0) + parseFloat(incomeInput[id] || 0)}
+        ));
+        setIncomeInput((prev)=>({
+            ...prev, [id]:""
+        }));
     }
     const displayTotal = (id,value) =>{
         setTotalInput((prev) =>({
             ...prev,
             [id]:value
+        }))
+        setTotalInput((prev) =>({
+            ...prev,
+            [id]:""
         }));
     }
     const saveToLocalStorage = (data) =>{
@@ -98,7 +106,7 @@ const Income = () => {
                                 <input 
                                 className='input is-success'
                                 type="number"
-                                value={totalInput}
+                                value={totalInput[item.id] || ""}
                                 onChange={(e)=>displayTotal(item.id,e.target.value)}
                                  />
                             </li>
@@ -109,6 +117,6 @@ const Income = () => {
             </div>
         </div>
     );
-};
+}
 
 export default Income;
