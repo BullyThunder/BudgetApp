@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/css/style.scss';
 
 const Income = () => {
@@ -6,17 +6,27 @@ const Income = () => {
     const [arrCategory, setArrCategory] = useState(()=>{
         try{
             const saveCategory_income = (localStorage.getItem("saveCategory_income"));
-            return saveCategory_income ? JSON.parse(saveCategory_income) : [];
+            const parsed = saveCategory_income ? JSON.parse(saveCategory_income) : [];
+            return Array.isArray(parsed) ? parsed : [];
         }
             catch(e){
                 console.log(`Error${e}`);
                 return [];
         }});
-    const [incomeInput, setIncomeInput] = useState(''); 
+    const [incomeInput, setIncomeInput] = useState(()=>{
+        try {
+            const saveIncomeInput = (localStorage.getItem("saveIncomeInput"));
+            return saveIncomeInput ? JSON.parse(saveIncomeInput) : [];
+        }
+            catch(e){
+                console.log(`Error${e}`);
+                return [];
+            }
+    }); 
     const deleteList = (id) =>{
      let deletingList = arrCategory.filter((item) => item.id !== id);
      setArrCategory(deletingList);
-     saveToLocalStorage(deletingList)
+     saveToLocalStorage_Category(deletingList)
     }
     const displayInput = (event) => {
         setInputValue(event.target.value);
@@ -36,34 +46,89 @@ const Income = () => {
             [id]:""}))
     }
     const addCategory = () => {
+        if(inputValue.trim()){
         const updatedArrCategory = [...arrCategory, { value: inputValue,id: Date.now(),total:0 }];
         setArrCategory(updatedArrCategory);
         setInputValue('');
-        saveToLocalStorage(updatedArrCategory)
+        saveToLocalStorage_Category(updatedArrCategory)
+        }
     };
-    const [totalInput, setTotalInput] = useState('');
-    const addToTotal = (id) =>{
-        setTotalInput((prev)=>({
-            ...prev, [id]:(prev[id] || 0) + parseFloat(incomeInput[id] || 0)}
-        ));
-        setIncomeInput((prev)=>({
-            ...prev, [id]:""
-        }));
-    }
-    const displayTotal = (id,value) =>{
-        setTotalInput((prev) =>({
+    const [totalInput, setTotalInput] = useState(()=>{
+        try {
+            const saveTotalInput = (localStorage.getItem("saveTotalInput"));
+            return saveTotalInput  ? JSON.parse(saveTotalInput ) : [];
+        }
+            catch(e){
+                console.log(`Error${e}`);
+                return [];
+            }
+    });
+    const addToTotal = (id) => {
+        // Обновляем totalInput
+        setTotalInput((prev) => {
+            const updatedTotal = {
+                ...prev,
+                [id]: (prev[id] || 0) + parseFloat(incomeInput[id] || 0),
+            };
+            saveToLocalStorage_Total(updatedTotal);
+            return updatedTotal;
+        });
+    
+        // Сбрасываем поле ввода incomeInput
+        setIncomeInput((prev) => ({
             ...prev,
-            [id]:value
-        }))
-        setTotalInput((prev) =>({
-            ...prev,
-            [id]:""
+            [id]: "",
         }));
+    };
+    const displayTotal = (id) =>{
+        setTotalInput((prev) =>{
+            const updatedTotal_value = {
+            ...prev,
+            [id]: (prev[id] || 0) + parseFloat(totalInput[id] || 0),
+        }
+        saveToLocalStorage_Total(updatedTotal_value);
+        return updatedTotal_value;
+    });
     }
-    const saveToLocalStorage = (data) =>{
+    const clearTotal =(id) =>{
+        setTotalInput((prev)=>{
+           const clear_Total ={ ...prev,
+            [id]: ""}
+            saveToLocalStorage_Total(clear_Total);
+            return clearTotal;
+        })
+        }
+        const [allTotalSumm, setAllTotalSumm] = useState (()=>{
+            try {
+                const saveTotalSummary = (localStorage.getItem("saveTotalSummary"));
+                return saveTotalSummary  ? JSON.parse(saveTotalSummary ) : [];
+            }
+                catch(e){
+                    console.log(`Error${e}`);
+                    return [];
+                }
+        });
+        useEffect(() =>{
+            console.log(`the amount has been recalculated: ${allTotalSumm}`);
+           }, [allTotalSumm]);
+
+       const total_Sum = () =>{
+       let summary = Object.values(totalInput).reduce((acc,next) => acc+next,0);
+       setAllTotalSumm(summary);
+       saveToLocalStorage_Summary(summary);
+       return summary;
+       }
+        
+       
+    const saveToLocalStorage_Category = (data) =>{
         localStorage.setItem("saveCategory_income",JSON.stringify(data));
     }
-
+    const saveToLocalStorage_Total = (data) =>{
+        localStorage.setItem("saveTotalInput", JSON.stringify(data));
+    }
+    const saveToLocalStorage_Summary = (data) =>{
+        localStorage.setItem("saveTotalSummary", JSON.stringify(data));
+    }
     return (
         <div className='income income__padding income__container'>
             <div className='income__category'>
@@ -109,11 +174,21 @@ const Income = () => {
                                 value={totalInput[item.id] || ""}
                                 onChange={(e)=>displayTotal(item.id,e.target.value)}
                                  />
+                                 <button onClick={() =>clearTotal(item.id)}>Clear</button>
+                                 <button onClick={() =>total_Sum(item.id)}>Add to Total</button>
                             </li>
                             </React.Fragment>
                         ))}
                     </ul>
+                    <div>
+                        <span>TOTAL</span>
+                        <input className='input is-success'
+                    value={allTotalSumm}
+                    onChange = {total_Sum}
+                     type="number" />
+                     </div>
             </div>
+            
             </div>
         </div>
     );
