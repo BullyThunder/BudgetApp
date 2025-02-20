@@ -1,7 +1,6 @@
 .income {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   row-gap: 20px;
 }
 .income h2 {

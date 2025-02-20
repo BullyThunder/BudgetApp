@@ -2,7 +2,6 @@
 .income{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     row-gap: 20px;
     & h2{
         font-size: 42px;
@@ -11,6 +10,9 @@
     }
     &__container{
         @include mixins.container-styles;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     &__padding{
         padding-top: 20px;

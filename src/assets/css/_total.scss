@@ -1,0 +1,12 @@
+.total{
+    h2{
+        font-size: 30px;
+    }
+    &-list{
+        display: flex;
+        justify-content: center;
+    }
+    &-input{
+        max-width: 300px;
+    }
+}

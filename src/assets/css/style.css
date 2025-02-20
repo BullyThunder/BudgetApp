@@ -6,7 +6,6 @@
 .income {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   row-gap: 20px;
 }
 .income h2 {
@@ -19,6 +18,9 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .income__padding {
   padding-top: 20px;
@@ -62,4 +64,78 @@
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.expenses {
+  display: flex;
+  flex-direction: row;
+  row-gap: 20px;
+}
+.expenses h2 {
+  font-size: 42px;
+  padding-bottom: 20px;
+  color: red;
+}
+.expenses__container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.expenses__padding {
+  padding-top: 20px;
+}
+.expenses__category {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.expenses__category h2:first-of-type {
+  color: black;
+}
+.expenses__category-btn {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+.expenses__category-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.expenses__category-list li {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding-bottom: 15px;
+}
+.expenses__category-list li input {
+  height: 30px;
+  max-width: 200px;
+}
+.expenses__category-list li span {
+  min-width: 130px;
+  font-weight: bold;
+}
+.expenses__category-block {
+  padding: 8px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.total h2 {
+  font-size: 30px;
+}
+.total-list {
+  display: flex;
+  justify-content: center;
+}
+.total-input {
+  max-width: 300px;
 }/*# sourceMappingURL=style.css.map */
