@@ -17,7 +17,7 @@ const Total = () => {
     };
 
     useEffect(() => {
-        setTotalBalance(IncomeSum - ExpensesSum);
+        setTotalBalance((IncomeSum - ExpensesSum).toFixed(2));
     }, [IncomeSum, ExpensesSum]); // Запускаем эффект при изменении доходов или расходов
 
     return (
