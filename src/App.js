@@ -1,16 +1,12 @@
-import logo from './logo.svg';
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/router.js"; // Импортируем маршруты правильно
 import './App.css';
 
-import Income from './components/income.jsx'
-import Expenses from './components/expenses.jsx'
-import Total from './components/total.jsx'
 function App() {
   return (
-    <div className="App">
-      <div className="App-block">
-      <Total/>
-      </div>
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 

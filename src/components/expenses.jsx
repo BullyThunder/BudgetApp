@@ -60,7 +60,6 @@ const Expenses = ({SetSum2}) => {
             saveCategoriesToLocalStorage(updatedCategoryList);
         }
     };
-
     const [totalExpenses, setTotalExpenses] = useState(() => {
         try {
             const savedTotals = localStorage.getItem("savedTotals");
@@ -194,7 +193,7 @@ const Expenses = ({SetSum2}) => {
                     ))}
                 </ul>
                 
-                <div>
+                <div className='total-section'>
                     <span>GRAND TOTAL</span>
                     <input className='input is-success' 
                         value={grandTotal} 

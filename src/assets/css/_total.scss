@@ -6,7 +6,46 @@
         display: flex;
         justify-content: center;
     }
+    &-section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 7px;
+        align-items: center;
+    }
+    &-extra{
+        font-size: 16px;
+    }
+    &-text{
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+    }
+    &-bottom{
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        align-items: center;
+        justify-content: center;
+    }
+    &-nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 30px;
+        a{
+        color: black;
+        }
+    }
     &-input{
         max-width: 300px;
+    }
+    &-block{
+        padding-top: 20px;
+        column-gap: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -214,7 +214,7 @@ const Income = ({ SetSum1 }) => {
                             </React.Fragment>
                         ))}
                     </ul>
-                    <div>
+                    <div className='total-section'>
                         <span>TOTAL</span>
                         <input
                             className='input is-success'

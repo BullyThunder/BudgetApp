@@ -3,6 +3,16 @@
   margin: 0px auto;
 }
 
+.positive {
+  border-color: green;
+  color: green;
+}
+
+.negative {
+  border-color: red;
+  color: red;
+}
+
 .income {
   display: flex;
   flex-direction: row;
@@ -27,6 +37,7 @@
 }
 .income__category {
   display: flex;
+  align-items: center;
   flex-direction: column;
   row-gap: 15px;
 }
@@ -92,6 +103,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 15px;
+  align-items: center;
 }
 .expenses__category h2:first-of-type {
   color: black;
@@ -136,6 +148,46 @@
   display: flex;
   justify-content: center;
 }
+.total-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 7px;
+  align-items: center;
+}
+.total-extra {
+  font-size: 16px;
+}
+.total-text {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+}
+.total-bottom {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.total-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30px;
+}
+.total-nav a {
+  color: black;
+}
 .total-input {
   max-width: 300px;
+}
+.total-block {
+  padding-top: 20px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
