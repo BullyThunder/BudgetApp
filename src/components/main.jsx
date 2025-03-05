@@ -6,7 +6,7 @@ const Main = () =>{
         <div className='main'>
             <div className='total-nav'>
                     <nav>
-                     <Link to="/">Error</Link> |  
+                     <Link to="/transactions">Transactions</Link> |  
                      <Link to="/BudgetApp">Total</Link>
                      </nav>
             </div>

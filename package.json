@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://BullyThunder.github.io/BudgetApp",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.5.1",
+    "@reduxjs/toolkit": "^2.6.0",
     "bulma": "^1.0.3",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
